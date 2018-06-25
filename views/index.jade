@@ -1,0 +1,45 @@
+extends layout
+block content
+  form(id="form", method="post")
+    section(id="main")
+      section(id="horizontal")
+        section(id="jstree")
+        aside
+          table
+            tbody
+              tr
+                td.field
+                  span Company name
+                  span.reqMark *
+                td.field
+                  input(type="text", name="tbNameComp", id="tbNameComp", disabled="disabled").txtBox
+              tr
+                td.field
+                  span Main company
+                  span.reqMark **
+                td.field
+                  input(type="text", name="tbParentName", id="tbParentName", disabled="disabled").txtBox
+              tr
+                td.field
+                  span Estimated annual earnings
+                  span.reqMark *
+                td.field
+                  input(type="text", name="tbEarnings", id="tbEarnings", disabled="disabled").txtBox
+          section.alignButton
+            input(type="button", name="btnUpdate", value="Update", id="btnUpdate", style="display:none").ctrlButton
+            input(type="button", name="btnInsert", value="Insert", id="btnInsert", disabled="disabled", style="display:none").ctrlButton
+            input(type="button", name="btnCancel", value="Cancel", id="btnCancel", disabled="disabled", style="display:none").ctrlButton
+            section(id="hideblock")
+              input(type="button", name="buttonAdd", value="Add", id="buttonAdd").ctrlButton
+              input(type="button", name="buttonEdit", value="Edit", id="buttonEdit", disabled="disabled").ctrlButton
+              input(type="button", name="buttonDelete", value="Delete", id="buttonDelete", disabled="disabled").ctrlButton
+          section.sideNote
+            span.reqMark * - required fields 
+            br
+            span.reqMark ** - if left blank, it will be the main company
+      footer
+block scripts
+  script(src="/javascripts/jquery-3.3.1.min.js")
+  script(src="/javascripts/jquery.validate.min.js")
+  script(src="/javascripts/jstree.min.js")
+  script(src="/javascripts/client.js")
