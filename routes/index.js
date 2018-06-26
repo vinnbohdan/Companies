@@ -109,12 +109,10 @@ router.post('/update', function(req, res, next) {
   db.once('open', function() {
     var parID = null;
     var parName = "";
-    Company.find({name: req.body.tbNameComp.toLowerCase()},{_id: 0, name: 1}).lean().exec(function (err, docs) {
-      if(err) return console.log(err);
-      if (docs === undefined || docs.length == 0) { // Company does not exist
-        res.status(200).send("You are trying to update non-existent company");
-      } else {                                      // Company exists
-        
+    Company.find({_id: req.body.idComp, name: req.body.tbNameComp.toLowerCase()},{_id: 0, name: 1}).lean().exec(function (err1, docs) {
+      if(err1) {
+        return console.log(err1);
+      } else {
         Company.find({name: req.body.tbParentName.toLowerCase()},{_id: 1}).lean().exec(function (err, obj) {
           if(err) return console.log(err);
           if (obj === undefined || obj.length == 0) {// Parent does not exist
@@ -125,15 +123,25 @@ router.post('/update', function(req, res, next) {
             parName = req.body.tbParentName.toLowerCase();
           }
           Company.replaceOne({_id: req.body.idComp}, {name: req.body.tbNameComp.toLowerCase(), earnings: req.body.tbEarnings, parentId: parID, parentName: parName}, function(err, doc){
-            mongoose.disconnect();
             if(err) {
               return console.log(err);
             } else {
-              res.sendStatus(200);
-            }
+              if (docs === undefined || docs.length == 0) { // Company does not exist
+                Company.updateMany({parentId: req.body.idComp}, {$set: {parentName: req.body.tbNameComp}}, function (err4, obj) {
+                  mongoose.disconnect();
+                  if(err4) {
+                    return console.log(err4);
+                  } else {
+                    res.sendStatus(200);
+                  }
+                });
+              } else {                                      // Company exists     
+                res.sendStatus(200);
+              };
+            };
           });
         });
-      }
+      };
     });
   });
 }); 
