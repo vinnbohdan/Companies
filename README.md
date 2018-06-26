@@ -22,22 +22,21 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Install (if needed) Mongoose and fs packages. In terminal window:
 
-    $ npm install mongoose --save
-    $ npm install fs --save
+        $ npm install mongoose --save
+        
+        $ npm install fs --save
 
 1. Change in Companies\config.json (it needs for changing path to DB from external to local):
 
     **code**:
 
         {
-            "urlconnection" : "mongodb://heroku_vs8p7lt2:9ni1jqin3njaevn1nllubaj9ah@ds219051.mlab.com:19051/heroku_vs8p7lt2"//,
-            //"urlconnection" : "mongodb://localhost:27017/db"
+            "urlconnection" : "mongodb://heroku_vs8p7lt2:9ni1jqin3njaevn1nllubaj9ah@ds219051.mlab.com:19051/heroku_vs8p7lt2"
         }
 
     **to**
 
         {
-            //"urlconnection" : "mongodb://heroku_vs8p7lt2:9ni1jqin3njaevn1nllubaj9ah@ds219051.mlab.com:19051/heroku_vs8p7lt2",
             "urlconnection" : "mongodb://localhost:27017/db"
         }
 
