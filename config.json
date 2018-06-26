@@ -1,4 +1,3 @@
 {
-    "urlconnection" : "mongodb://heroku_vs8p7lt2:9ni1jqin3njaevn1nllubaj9ah@ds219051.mlab.com:19051/heroku_vs8p7lt2"//,
-    //"urlconnection" : "mongodb://localhost:27017/db"
+    "urlconnection" : "mongodb://heroku_vs8p7lt2:9ni1jqin3njaevn1nllubaj9ah@ds219051.mlab.com:19051/heroku_vs8p7lt2"
  }
